@@ -1,0 +1,1 @@
+python -m training.train_maniskill_MoTdiffusion_unet_clip --config training/maniskill_unet_lang_config.yaml

@@ -1,0 +1,1 @@
+python -m training.train_maniskill_multitasks_MoTDiffusion_new_clip --config training/maniskill_multitasks_config_new.yaml

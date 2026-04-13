@@ -1,0 +1,35 @@
+# mode
+adapt: false
+use_pretrained: false
+
+# dirs
+display_name: trained_model
+action_data_dir:   /home/aiden/MoT_maniskill_sort_100/action_data/
+language_data_dir: /home/aiden/MoT_maniskill_sort_100/language_data/
+clip_model_name:   openai/clip-vit-base-patch32
+num_demos_per_task: 100   # replaces num_train_demos
+lowdim_obs_dim:    9
+action_dim:        8
+models_save_dir: trained_model_tool_usage_4
+output_dir: trained_model_tool_usage_4
+# hyperparams
+num_epochs: 200
+num_diffusion_iters: 100
+num_tests: 50
+num_vis_demos: 3
+num_train_demos: 98
+num_warmup_steps: 500
+pred_horizon: 16
+obs_horizon: 2
+action_horizon: 8
+lang_hidden_dim: 3584
+n_tokens: 16
+proj_dim: 2
+max_steps: 300
+eval_epoch: 20
+lr: 0.0001
+weight_decay: 0.000001
+batch_size: 64
+resize_scale: 96
+wandb: false
+verbose: false

@@ -1,0 +1,29 @@
+# Checkpoints and trained weights
+checkpoints/
+trained_model_tool_usage_*/
+
+# Evaluation outputs
+eval_results/
+video/
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.egg-info/
+dist/
+build/
+.eggs/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Claude
+.claude/
+
+# VSCode
+.vscode/
+
+# OS
+.DS_Store
+Thumbs.db

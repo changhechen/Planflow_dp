@@ -1,0 +1,94 @@
+# Multi-Camera Vision-Language Diffusion Policy Configuration
+
+# WandB settings
+wandb:
+  project: "mot-maniskill-multitasks-diffusion-policy"
+  run_name: motDiffusion_maniskill_multitasks # Set to null for auto-generated name
+  tags: ["diffusion", "vision-language", "transformer"]
+  notes: "Training with camera view and language conditioning"
+
+# Dataset settings
+dataset:
+  type: "maniskill"
+  dataset_path_dir: "/home/aiden/MoT_maniskill_sort_100/action_data"  
+  language_dataset_path: "/home/aiden/MoT_maniskill_sort_100/language_data"
+  num_demos: 50
+  resize_scale: 96  
+  pretrained: false
+
+# Model architecture settings
+model:
+  # Horizons
+  pred_horizon: 16
+  obs_horizon: 2
+  action_horizon: 8
+  
+  # Dimensions
+  vision_feature_dim: 512  # Per camera feature dimension
+  lowdim_obs_dim: 9
+  proj_dim: 16
+  cond_dim: 512  # Larger conditioning for multi-modal
+  action_dim: 8
+  
+  # Vision encoder
+  vision_encoder:
+    name: "resnet18"
+    weights: null
+    features_per_group: 16
+  
+  # Transformer settings
+  transformer:
+    n_layer: 8
+    n_head: 4
+    n_emb: 256  
+    p_drop_emb: 0.0
+    p_drop_attn: 0.01
+    causal_attn: true
+    time_as_cond: true
+    obs_as_cond: true
+    n_cond_layers: 2
+    use_mask_generator: false
+    use_image_cond: true
+
+  # Diffusion settings
+  diffusion:
+    num_diffusion_iters: 100  # More diffusion steps
+    beta_schedule: "squaredcos_cap_v2"
+    clip_sample: true
+    prediction_type: "epsilon"
+
+# Training settings
+training:
+  num_epochs: 300
+  batch_size: 32  # Smaller batch due to multi-camera
+  num_workers: 16
+  log_freq: 10
+  seed: 42
+  
+  # Optimizer
+  optimizer:
+    lr: 1.0e-4 # Lower LR for larger model
+    weight_decay: 5.0e-7
+  
+  # Learning rate scheduler
+  lr_scheduler:
+    name: "cosine"
+    num_warmup_steps: 500  # Warmup steps for stability
+  
+  # EMA settings
+  ema:
+    power: 0.75  # Slower EMA for larger model
+
+# Checkpoint settings
+checkpoint:
+  save_dir: "/home/aiden/Planflow_dp/checkpoints/maniskill_model_march15"
+  save_freq: 10000
+  save_best: true
+  save_last: true
+
+# Evaluation settings
+eval:
+  enabled: true
+  eval_freq: 10
+  num_eval_episodes: 20
+  success_threshold: 0.8
