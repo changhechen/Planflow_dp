@@ -1,6 +1,6 @@
 # Planflow-DP
 
-Planflow-DP is a multi-task robot manipulation framework that combines a **1D UNet diffusion policy** with a **GPT-4o stage planner**. During evaluation, a frozen CLIP text encoder provides language conditioning and GPT-4o dynamically selects task stages from live camera images to guide the policy through long-horizon manipulation tasks on [ManiSkill](https://github.com/haosulab/ManiSkill) environments.
+Planflow-DP is a multi-task robot manipulation framework that combines a **1D UNet diffusion policy** with a **GPT-4o stage planner** (we will upload the Diffusion Transformer version very soon). During evaluation, a frozen CLIP text encoder provides language conditioning and GPT-4o dynamically selects task stages from live camera images to guide the policy through long-horizon manipulation tasks on [ManiSkill](https://github.com/haosulab/ManiSkill) environments.
 
 ## Repository Structure
 
